@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 03:01 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 06, 2020 at 04:14 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,17 +25,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` varchar(100) NOT NULL,
+  `user_id` varchar(100) NOT NULL,
+  `message` varchar(200) NOT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `item_id`, `user_id`, `message`) VALUES
+(26, '75', '13', 'dating daan sucks'),
+(25, '75', '13', 'hello world'),
+(24, '75', '13', 'niceeeee');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hats`
 --
 
-CREATE TABLE `hats` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `hats`;
+CREATE TABLE IF NOT EXISTS `hats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `price` int(255) NOT NULL,
   `email` varchar(225) NOT NULL,
   `img` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hats`
@@ -53,14 +80,17 @@ INSERT INTO `hats` (`id`, `title`, `price`, `email`, `img`, `created_at`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -78,40 +108,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `created_at`
 (9, 'Ace Lui Manalo', 'alas10', 'alasaeecelui010@gmail.com', 'c8d3fcc6f2832f343ab1526fecc2ace1', '2020-11-06 11:32:19'),
 (10, 'Ace Lui Manalo', 'alas10', 'alasaecelui010@gmail.com', 'c8d3fcc6f2832f343ab1526fecc2ace1', '2020-11-06 11:33:23'),
 (11, 'Ace Lui Manalo', 'alas10', 'aalasacelui010@gmail.com', 'c8d3fcc6f2832f343ab1526fecc2ace1', '2020-11-06 11:34:40'),
-(12, 'admin admin', 'admin', 'admin@gmail.com', 'admin123', '2020-11-06 12:36:53');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `hats`
---
-ALTER TABLE `hats`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `hats`
---
-ALTER TABLE `hats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+(12, 'admin admin', 'admin', 'admin@gmail.com', 'admin123', '2020-11-06 12:36:53'),
+(13, 'vincent lanchita', 'peenest', 'lanchitavincent@gmail.com', 'f089fa06504a0b132ef8809fdd1fb2c1', '2020-11-06 14:57:22');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

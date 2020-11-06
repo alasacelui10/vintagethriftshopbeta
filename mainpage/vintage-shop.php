@@ -45,7 +45,7 @@ if(!isset($_SESSION['id'])) {
     <div class="col-md">
     <img src="../uploads<?= '/'.$hat['img'] ?>" class="img-thumbnail " width="300" alt="image"> </div><br>
    
-    <a href="" class="btn btn-primary text-decoration-none  mb-5">View More</a>
+    <a href="item.php?itemId=<?php echo $hat['id'] ?>" class="btn btn-primary text-decoration-none  mb-5">View More</a>
 <?php endforeach ?>
    </div>
 </center>

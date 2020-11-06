@@ -20,7 +20,12 @@ function itexmo($number,$message,$apicode,$passwd){
     return file_get_contents($url, false, $context);
 }
 
-$conn = mysqli_connect('localhost', 'root', '', 'vintagethriftshop');
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbName = "vintagethriftshop";
+
+$conn = mysqli_connect($host, $user, $password, $dbName);
 
 if(!$conn) {
     echo 'error database'. mysqli_error($conn);
